@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --index: calc(1vw + 1vh);
+  --black: #141414;
+}
+@font-face {
+  font-family: arsenal_f, sans-serif;
+  src: url(../fonts/arsenal-regular.woff2);
+}
+
+.body {
+  background-color: #f0f0f0;
+}
+
+.magic-list {
+  font-family: arsenal_f, sans-serif;
+  font-size: calc(var(--index) * 2.75);
+  padding: calc(var(--index) * 2.75);
+}
+
+.magic-list_item {
+  cursor: none;
+  color: var(--black);
+  display: block;
+  text-decoration: none;
+  line-height: 0.9;
+  padding: calc(var(--index) * 3) calc(var(--index) * 7.5);
+  border-bottom: 1px solid rgb(0 0 0 / 0.09);
+  counter-increment: my-counter;
+}
+
+.magic-list_header {
+  width: min-content;
+}
+
+.magic-list_item::before {
+  content: "(0" counter(my-counter) ")";
+  position: absolute;
+  font-size: calc(var(--index) * 0.95);
+  margin-left: calc(var(--index) * -2.25);
+  margin-top: calc(var(--index) / 2);
+  letter-spacing: 0.5px;
+}
