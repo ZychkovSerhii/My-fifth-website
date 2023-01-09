@@ -6,6 +6,8 @@
 :root {
   --index: calc(1vw + 1vh);
   --black: #141414;
+  --transition: 1.25s cubic-bezier(0.2, 0.5, 0, 1);
+  --transition-cursor: 2s cubic-bezier(0.05, 0.5, 0, 1);
 }
 @font-face {
   font-family: arsenal_f, sans-serif;
@@ -35,6 +37,8 @@
 
 .magic-list_header {
   width: min-content;
+  transition: transform var(--transition);
+  will-change: transform;
 }
 
 .magic-list_item::before {
@@ -44,4 +48,36 @@
   margin-left: calc(var(--index) * -2.25);
   margin-top: calc(var(--index) / 2);
   letter-spacing: 0.5px;
+  transition: transform var(--transition);
+  transition-delay: 0.03s;
+  will-change: transform;
+}
+
+.magic-list_item:hover .magic-list_header,
+.magic-list_item:hover::before {
+  transform: translate3d(calc(var(--index) * -5), 0, 0);
+}
+
+.magic-list_item:first-child {
+  border-top: 1.5px solid var(--black);
+}
+.cursor {
+  --width: calc(var(--index) * 22);
+  --height: calc(var(--index) * 14);
+  position: fixed;
+  width: var(--width);
+  height: var(--height);
+  top: calc(var(--height) * -0.5);
+  left: calc(var(--width) * -0.5);
+  overflow: hidden;
+  transform: translate3d(var(--move-x), var(--move-y), 0);
+  transition: transform var(--transition-cursor);
+  will-change: transform;
+  z-index: -1;
+}
+
+.cursor_image {
+  position: relative;
+  width: calc(var(--width) * 2);
+  height: calc(var(--height) * 2);
 }
